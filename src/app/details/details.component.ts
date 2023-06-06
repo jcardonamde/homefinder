@@ -67,9 +67,11 @@ export class DetailsComponent {
 
   // Al acceder al componente elegido el Id es convertido a numero y reasignado con base a la ruta elegida
   constructor() {
-    const housingLocationId = Number(this.route.snapshot.params['id']);
+    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     // Se pasa el parámetro de ruta como argumento a la función de servicio
-    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
+    this.housingService.getHousingLocationById(housingLocationId).then(housingLocation => {
+      this.housingLocation = housingLocation;
+    });
   }
 
   // Este código usa el operador ?? nulo para establecer

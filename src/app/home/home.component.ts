@@ -31,9 +31,13 @@ export class HomeComponent {
 
   // la primera función que se ejecuta cuando se crea este componente
   constructor() {
-    this.housingLocationList = this.housingService.getAllHousingLocations();
-    // Carga del conjunto total de valores de la ubicación de las viviendas
-    this.filteredLocationList = this.housingLocationList;
+    // this.housingLocationList = this.housingService.getAllHousingLocations();
+
+    this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocation[]) => {
+      this.housingLocationList = housingLocationList;
+      // Carga del conjunto total de valores de la ubicación de las viviendas
+      this.filteredLocationList = housingLocationList;
+    });
   }
 
   // Función para filtrar por resultado
